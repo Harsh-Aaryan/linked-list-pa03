@@ -144,10 +144,13 @@ void MyList<T>::splice_after(ListNode<T> *splice_point, MyList<T> &source) {
 
   // get size -insert to list
   // use pop front insertertion
+  // check something wrong
   int source_size = source.size();
   for (int i = 0; i < source_size; i++) {
-    this->insert(LinkedListIterator<T>(splice_point), source.front());
-    splice_point = splice_point->next;
+    this->insert(LinkedListIterator<T>(splice_point->next),
+                 source.front());      // insert
+    splice_point = splice_point->next; // move
+    // remove
     source.pop_front();
   }
 }
